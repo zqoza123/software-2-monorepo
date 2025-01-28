@@ -9,7 +9,7 @@ import components.naturalnumber.NaturalNumber1L;
  * JUnit test fixture for {@code NaturalNumber}'s constructors and kernel
  * methods.
  *
- * @author Put your name here
+ * @author David P. & Ford M.
  *
  */
 public abstract class NaturalNumberTest {
@@ -259,8 +259,9 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testMultiplyBy10WithSmallNumber() {
-        int expectedValue = 52;
-        NaturalNumber n1 = this.constructorTest(5);
+        final int expectedValue = 52;
+        final int start = 5;
+        NaturalNumber n1 = this.constructorTest(start);
         NaturalNumber n2 = this.constructorRef(expectedValue);
         n1.multiplyBy10(2);
         assertEquals(n1, n2);
@@ -271,11 +272,12 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testMultiplyBy10WithLargeNumber() {
-        int number = 45;
-        int expectedValue = 453;
+        final int number = 45;
+        final int expectedValue = 453;
+        final int three = 3;
         NaturalNumber n1 = this.constructorTest(number);
         NaturalNumber n2 = this.constructorRef(expectedValue);
-        n1.multiplyBy10(3);
+        n1.multiplyBy10(three);
         assertEquals(n1, n2);
     }
 
@@ -284,8 +286,8 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testMultiplyBy10With100() {
-        int number = 10;
-        int expectedValue = 100;
+        final int number = 10;
+        final int expectedValue = 100;
         NaturalNumber n1 = this.constructorTest(number);
         NaturalNumber n2 = this.constructorRef(expectedValue);
         n1.multiplyBy10(0);
@@ -310,9 +312,9 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testDivideBy10WithSmallNumber() {
-        int number = 36;
-        int expectedQuotient = 3;
-        int expectedRemainder = 6;
+        final int number = 36;
+        final int expectedQuotient = 3;
+        final int expectedRemainder = 6;
         NaturalNumber n1 = this.constructorTest(number);
         NaturalNumber n2 = this.constructorRef(expectedQuotient);
         int remainder = n1.divideBy10();
@@ -325,9 +327,9 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testDivideBy10WithLargeNumber() {
-        int number = 78912;
-        int expectedQuotient = 7891;
-        int expectedRemainder = 2;
+        final int number = 78912;
+        final int expectedQuotient = 7891;
+        final int expectedRemainder = 2;
         NaturalNumber n1 = this.constructorTest(number);
         NaturalNumber n2 = this.constructorRef(expectedQuotient);
         int remainder = n1.divideBy10();
@@ -340,9 +342,9 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testDivideBy10WithSingleDigit() {
-        int number = 8;
-        int expectedQuotient = 0;
-        int expectedRemainder = 8;
+        final int number = 8;
+        final int expectedQuotient = 0;
+        final int expectedRemainder = 8;
         NaturalNumber n1 = this.constructorTest(number);
         NaturalNumber n2 = this.constructorRef(expectedQuotient);
         int remainder = n1.divideBy10();
@@ -390,7 +392,8 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testIsZeroFalseForSmallValue() {
-        NaturalNumber n1 = this.constructorTest(8);
+        final int smallValue = 8;
+        NaturalNumber n1 = this.constructorTest(smallValue);
         boolean isZero = n1.isZero();
         assertEquals(isZero, false);
     }
@@ -400,7 +403,8 @@ public abstract class NaturalNumberTest {
      */
     @Test
     public void testIsZeroFalseForLargeValue() {
-        NaturalNumber n1 = this.constructorTest(98765);
+        final int largeValue = 98765;
+        NaturalNumber n1 = this.constructorTest(largeValue);
         boolean isZero = n1.isZero();
         assertEquals(isZero, false);
     }

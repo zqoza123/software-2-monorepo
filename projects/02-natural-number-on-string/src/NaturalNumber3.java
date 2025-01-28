@@ -14,7 +14,7 @@ import components.naturalnumber.NaturalNumberSecondary;
  *         else the decimal number whose ordinary depiction is $this.rep]
  * </pre>
  *
- * @author David P and Rutherford Medley
+ * @author David P. and Ford M.
  *
  */
 public class NaturalNumber3 extends NaturalNumberSecondary {
