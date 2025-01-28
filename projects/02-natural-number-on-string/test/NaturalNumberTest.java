@@ -366,6 +366,17 @@ public abstract class NaturalNumberTest {
         assertEquals(remainder, expectedRemainder);
         assertEquals(n1, n2);
     }
+    /**
+     * Check if isZero return false for the LargeNumAfterDivideBy10.
+     */
+    @Test
+    public void testIsZeroAfterDivideBy10WithLargeNum() {
+        final int number = 78912;
+        NaturalNumber n1 = this.constructorTest(number);
+        n1.divideBy10();
+        boolean isZero = n1.isZero();
+        assertEquals(isZero, false);
+    }
 
     /**
      * Check if isZero returns true for the default value.
