@@ -367,7 +367,7 @@ public abstract class NaturalNumberTest {
         assertEquals(n1, n2);
     }
     /**
-     * Check if isZero return false for the LargeNumAfterDivideBy10.
+     * Check if isZero return false for the Large Number After DivideBy10.
      */
     @Test
     public void testIsZeroAfterDivideBy10WithLargeNum() {
