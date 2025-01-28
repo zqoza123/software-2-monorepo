@@ -36,11 +36,7 @@ public class NaturalNumber3Test extends NaturalNumberTest {
 
     @Override
     protected final NaturalNumber constructorRef(int i) {
-
-        // TODO - fill in body
-
-        // This line added just to make the component compilable.
-        return null;
+        return new NaturalNumber3();
     }
 
     @Override
