@@ -133,9 +133,7 @@ public class Map4<K, V> extends MapSecondary<K, V> {
      * @ensures this = {}
      */
     public Map4(int hashTableSize) {
-
-        // TODO - fill in body
-
+        this.createNewRep(hashTableSize);
     }
 
     /*
