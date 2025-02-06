@@ -207,10 +207,20 @@ public class Map4<K, V> extends MapSecondary<K, V> {
     public final Pair<K, V> removeAny() {
         assert this.size() > 0 : "Violation of: this /= empty_set";
 
-        // TODO - fill in body
-
-        // This line added just to make the component compilable.
-        return null;
+        // set removed pair to null
+        Pair<K, V> removedPair = null;
+        // set index to 0
+        int index = 0;
+        // use this while loop to indicate when an element has been removed.
+        while (removedPair == null && index < this.hashTable.length) {
+            Map<K, V> bucket = this.hashTable[index];
+            if (bucket.size() > 0) {
+                removedPair = bucket.removeAny();
+                this.size--; // update total size accordingly
+            }
+            index++;
+        }
+        return removedPair;
     }
 
     @Override
