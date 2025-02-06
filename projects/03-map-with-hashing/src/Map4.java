@@ -248,11 +248,11 @@ public class Map4<K, V> extends MapSecondary<K, V> {
 
     @Override
     public final int size() {
-
-        // TODO - fill in body
-
-        // This line added just to make the component compilable.
-        return 0;
+        // just return the size and make sure this is not calling method
+        // to ensure i am referring to the variable size
+        //so it doesnt violate the kernal purity rule ! - Ford make a note on this.
+        // FORD DONT FORGET THIS !!! DONT DO Size(); OR IT WILL BE ERROR
+        return this.size;
     }
 
     @Override
