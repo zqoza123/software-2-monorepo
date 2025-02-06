@@ -2,6 +2,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import components.map.Map;
+import components.map.Map2;
 import components.map.MapSecondary;
 
 /**
@@ -74,7 +75,6 @@ public class Map4<K, V> extends MapSecondary<K, V> {
      */
     private static int mod(int a, int b) {
         assert b > 0 : "Violation of: b > 0";
-
         // calculate modulo operation and adjust the result to ensure it is non neg
         int mod = a % b;
         if (mod < 0) {
@@ -104,10 +104,13 @@ public class Map4<K, V> extends MapSecondary<K, V> {
          * compile; as shown, it results in a warning about an unchecked
          * conversion, though it cannot fail.
          */
+        // make new hash table with specific size
         this.hashTable = new Map[hashTableSize];
-
-        // TODO - fill in rest of body
-
+        // create new map for each entry of hash-table and set size to 0.
+        for (int index = 0; index < hashTableSize; index++) {
+            this.hashTable[index] = new Map2<K, V>();
+        }
+        this.size = 0;
     }
 
     /*
@@ -118,9 +121,7 @@ public class Map4<K, V> extends MapSecondary<K, V> {
      * No-argument constructor.
      */
     public Map4() {
-
-        // TODO - fill in body
-
+        this.createNewRep(DEFAULT_HASH_TABLE_SIZE);
     }
 
     /**
