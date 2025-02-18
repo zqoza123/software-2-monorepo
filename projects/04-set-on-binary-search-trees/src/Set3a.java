@@ -283,8 +283,7 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
         assert x != null : "Violation of: x is not null";
         assert !this.contains(x) : "Violation of: x is not in this";
 
-        // TODO - fill in body
-
+        insertInTree(this.tree, x);
     }
 
     @Override
