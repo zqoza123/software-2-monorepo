@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -163,5 +164,14 @@ public abstract class SetTest {
         assertTrue(set.contains("Alice"));
         assertTrue(set.contains("Bob"));
         assertTrue(set.contains("Charlie"));
+    }
+
+    /**
+     * Tests checking the absence of an element in a set.
+     */
+    @Test
+    public void testContainsNotFound() {
+        Set<String> set = this.createFromArgsTest("Alice", "Bob", "Charlie");
+        assertFalse(set.contains("David"));
     }
 }
