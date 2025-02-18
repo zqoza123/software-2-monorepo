@@ -105,4 +105,16 @@ public abstract class SetTest {
         set.remove("David");
         assertEquals(set, expectedSet);
     }
+
+    /**
+     * Tests removing an element from a non-empty set.
+     */
+    @Test
+    public void testRemoveElementFromNonEmptySet() {
+        Set<String> set = this.createFromArgsTest("Alice", "Bob", "David");
+        Set<String> expectedSet = this.createFromArgsRef("Alice", "Bob");
+        set.remove("David");
+        assertEquals(set, expectedSet);
+    }
+
 }
