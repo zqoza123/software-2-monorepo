@@ -204,7 +204,7 @@ public abstract class SetTest {
     public void testSizeOfMultipleElementsSet() {
         Set<String> set = this.createFromArgsTest("Alice", "Bob", "Charlie");
         int size = set.size();
-        int expectedSize = 3;
+        final int expectedSize = 3;
         assertEquals(size, expectedSize);
     }
 }
