@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -117,4 +118,17 @@ public abstract class SetTest {
         assertEquals(set, expectedSet);
     }
 
+    /**
+     * Tests removing any element from a set with multiple elements.
+     */
+    @Test
+    public void testRemoveAnyElementFromMultiple() {
+        Set<String> set = this.createFromArgsTest("Alice", "Bob", "David");
+        Set<String> expectedSet = this.createFromArgsRef("Alice", "Bob",
+                "David");
+        String removedElement = set.removeAny();
+        assertTrue(expectedSet.contains(removedElement));
+        expectedSet.remove(removedElement);
+        assertEquals(set, expectedSet);
+    }
 }
