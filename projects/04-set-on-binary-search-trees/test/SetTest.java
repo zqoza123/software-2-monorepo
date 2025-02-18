@@ -72,7 +72,7 @@ public abstract class SetTest {
         return set;
     }
 
-    // TODO - add test cases for constructor, add, remove, removeAny, contains, and size
+    // add test cases for constructor, add, remove, removeAny, contains, and size
 
     /**
      * Tests adding a new element to an empty set.
