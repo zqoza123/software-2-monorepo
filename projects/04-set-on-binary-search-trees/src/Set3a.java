@@ -290,7 +290,6 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
     public final T remove(T x) {
         assert x != null : "Violation of: x is not null";
         assert this.contains(x) : "Violation of: x is in this";
-
         return removeFromTree(this.tree, x);
     }
 
