@@ -174,4 +174,15 @@ public abstract class SetTest {
         Set<String> set = this.createFromArgsTest("Alice", "Bob", "Charlie");
         assertFalse(set.contains("David"));
     }
+
+    /**
+     * Tests the size of an empty set.
+     */
+    @Test
+    public void testSizeOfEmptySet() {
+        Set<String> set = this.createFromArgsTest();
+        int size = set.size();
+        int expectedSize = 0;
+        assertEquals(size, expectedSize);
+    }
 }
