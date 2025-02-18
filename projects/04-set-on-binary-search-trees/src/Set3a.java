@@ -53,10 +53,28 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
         assert t != null : "Violation of: t is not null";
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        boolean found = false;
 
-        // This line added just to make the component compilable.
-        return false;
+        // If the tree is not empty, proceed to check
+        if (t.size() > 0) {
+            BinaryTree<T> left = t.newInstance();
+            BinaryTree<T> right = t.newInstance();
+            T root = t.root();
+            t.disassemble(left, right);
+            // Compare the element with the root
+            int compareResult = x.compareTo(root);
+            if (compareResult == 0) {
+                found = true; // Element found
+            } else if (compareResult < 0) {
+                found = isInTree(left, x); // Search in the left subtree
+            } else {
+                found = isInTree(right, x); // Search in the right subtree
+            }
+            // Reassemble the tree after checking
+            t.assemble(root, left, right);
+        }
+
+        return found;
     }
 
     /**
