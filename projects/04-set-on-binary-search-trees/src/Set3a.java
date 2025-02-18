@@ -305,19 +305,13 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
     public final boolean contains(T x) {
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
-
-        // This line added just to make the component compilable.
-        return false;
+        return isInTree(this.tree, x);
     }
 
     @Override
     public final int size() {
 
-        // TODO - fill in body
-
-        // This line added just to make the component compilable.
-        return 0;
+        return this.tree.size();
     }
 
     @Override
