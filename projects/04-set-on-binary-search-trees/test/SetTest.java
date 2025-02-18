@@ -1,3 +1,7 @@
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import components.set.Set;
 
 /**
@@ -67,5 +71,16 @@ public abstract class SetTest {
     }
 
     // TODO - add test cases for constructor, add, remove, removeAny, contains, and size
+
+    /**
+     * Tests adding a new element to an empty set.
+     */
+    @Test
+    public void testAddToEmptySet() {
+        Set<String> set = this.createFromArgsTest();
+        Set<String> expectedSet = this.createFromArgsRef("Alice");
+        set.add("Alice");
+        assertEquals(set, expectedSet);
+    }
 
 }
