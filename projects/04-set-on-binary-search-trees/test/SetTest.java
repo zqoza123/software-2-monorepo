@@ -147,6 +147,15 @@ public abstract class SetTest {
     }
 
     /**
+     * Tests checking the presence of an element in an empty set.
+     */
+    @Test
+    public void testContainsOnEmptySet() {
+        Set<String> set = this.createFromArgsTest();
+        assertFalse(set.contains("Alice"));
+    }
+
+    /**
      * Tests checking the presence of an element in a single-element set.
      */
     @Test
