@@ -94,4 +94,15 @@ public abstract class SetTest {
         set.add("Charlie");
         assertEquals(set, expectedSet);
     }
+
+    /**
+     * Tests removing the only element in the set.
+     */
+    @Test
+    public void testRemoveElementLeavingEmptySet() {
+        Set<String> set = this.createFromArgsTest("David");
+        Set<String> expectedSet = this.createFromArgsRef();
+        set.remove("David");
+        assertEquals(set, expectedSet);
+    }
 }
