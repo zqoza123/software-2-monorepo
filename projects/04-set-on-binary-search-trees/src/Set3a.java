@@ -1,6 +1,7 @@
 import java.util.Iterator;
 
 import components.binarytree.BinaryTree;
+import components.binarytree.BinaryTree1;
 import components.set.Set;
 import components.set.SetSecondary;
 
@@ -188,6 +189,7 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
         // get root of tree
         T root = t.root();
         t.disassemble(left, right);
+
         int compareResult = x.compareTo(root);
         // if element is equal to the root
         if (compareResult == 0) {
@@ -222,9 +224,7 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
      * Creator of initial representation.
      */
     private void createNewRep() {
-
-        // TODO - fill in body
-
+        this.tree = new BinaryTree1<>();
     }
 
     /*
