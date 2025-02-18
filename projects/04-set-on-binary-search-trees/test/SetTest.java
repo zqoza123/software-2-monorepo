@@ -196,4 +196,15 @@ public abstract class SetTest {
         int expectedSize = 1;
         assertEquals(size, expectedSize);
     }
+
+    /**
+     * Tests the size of a set with multiple elements.
+     */
+    @Test
+    public void testSizeOfMultipleElementsSet() {
+        Set<String> set = this.createFromArgsTest("Alice", "Bob", "Charlie");
+        int size = set.size();
+        int expectedSize = 3;
+        assertEquals(size, expectedSize);
+    }
 }
