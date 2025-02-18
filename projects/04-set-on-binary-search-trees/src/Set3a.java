@@ -282,7 +282,6 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
     public final void add(T x) {
         assert x != null : "Violation of: x is not null";
         assert !this.contains(x) : "Violation of: x is not in this";
-
         insertInTree(this.tree, x);
     }
 
