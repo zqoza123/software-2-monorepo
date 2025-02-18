@@ -153,4 +153,15 @@ public abstract class SetTest {
         Set<String> set = this.createFromArgsTest("Alice");
         assertTrue(set.contains("Alice"));
     }
+
+    /**
+     * Tests checking the presence of elements in a multiple-element set.
+     */
+    @Test
+    public void testContainsMultipleElements() {
+        Set<String> set = this.createFromArgsTest("Alice", "Bob", "Charlie");
+        assertTrue(set.contains("Alice"));
+        assertTrue(set.contains("Bob"));
+        assertTrue(set.contains("Charlie"));
+    }
 }
