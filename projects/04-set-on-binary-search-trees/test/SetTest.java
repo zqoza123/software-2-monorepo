@@ -185,4 +185,15 @@ public abstract class SetTest {
         int expectedSize = 0;
         assertEquals(size, expectedSize);
     }
+
+    /**
+     * Tests the size of a set with a single element.
+     */
+    @Test
+    public void testSizeOfSingleElementSet() {
+        Set<String> set = this.createFromArgsTest("Alice");
+        int size = set.size();
+        int expectedSize = 1;
+        assertEquals(size, expectedSize);
+    }
 }
