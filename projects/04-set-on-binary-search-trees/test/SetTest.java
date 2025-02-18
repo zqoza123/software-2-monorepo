@@ -83,4 +83,15 @@ public abstract class SetTest {
         assertEquals(set, expectedSet);
     }
 
+    /**
+     * Tests adding a new element to a non-empty set.
+     */
+    @Test
+    public void testAddElementToNonEmptySet() {
+        Set<String> set = this.createFromArgsTest("Alice", "Bob");
+        Set<String> expectedSet = this.createFromArgsRef("Alice", "Bob",
+                "Charlie");
+        set.add("Charlie");
+        assertEquals(set, expectedSet);
+    }
 }
