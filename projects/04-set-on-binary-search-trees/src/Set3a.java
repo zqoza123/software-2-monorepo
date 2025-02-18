@@ -304,7 +304,6 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
     @Override
     public final boolean contains(T x) {
         assert x != null : "Violation of: x is not null";
-
         return isInTree(this.tree, x);
     }
 
