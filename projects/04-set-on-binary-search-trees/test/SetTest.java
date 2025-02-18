@@ -131,4 +131,17 @@ public abstract class SetTest {
         expectedSet.remove(removedElement);
         assertEquals(set, expectedSet);
     }
+
+    /**
+     * Tests removing any element from a set with a single element.
+     */
+    @Test
+    public void testRemoveAnyElementFromSingle() {
+        Set<String> set = this.createFromArgsTest("Alice");
+        Set<String> expectedSet = this.createFromArgsRef("Alice");
+        String removedElement = set.removeAny();
+        assertTrue(expectedSet.contains(removedElement));
+        expectedSet.remove(removedElement);
+        assertEquals(set, expectedSet);
+    }
 }
