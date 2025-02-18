@@ -96,8 +96,26 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
         assert t != null : "Violation of: t is not null";
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        // If the tree is empty, insert the element as the root
+        if (t.size() == 0) {
+            t.assemble(x, t.newInstance(), t.newInstance());
+        } else {
+            BinaryTree<T> left = t.newInstance();
+            BinaryTree<T> right = t.newInstance();
+            T root = t.root();
+            t.disassemble(left, right);
+            // Compare the element to be inserted with the root
+            int compareResult = x.compareTo(root);
+            // Insert into the appropriate subtree
+            if (compareResult < 0) {
+                insertInTree(left, x);
+            } else {
+                insertInTree(right, x);
+            }
+            // Reassemble the tree with the updated subtree
 
+            t.assemble(root, left, right);
+        }
     }
 
     /**
