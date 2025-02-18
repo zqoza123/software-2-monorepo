@@ -144,4 +144,13 @@ public abstract class SetTest {
         expectedSet.remove(removedElement);
         assertEquals(set, expectedSet);
     }
+
+    /**
+     * Tests checking the presence of an element in a single-element set.
+     */
+    @Test
+    public void testContainsSingleElement() {
+        Set<String> set = this.createFromArgsTest("Alice");
+        assertTrue(set.contains("Alice"));
+    }
 }
