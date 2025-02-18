@@ -297,7 +297,6 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
     @Override
     public final T removeAny() {
         assert this.size() > 0 : "Violation of: this /= empty_set";
-
         return removeSmallest(this.tree);
     }
 
