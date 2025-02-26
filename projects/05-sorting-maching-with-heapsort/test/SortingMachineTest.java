@@ -120,7 +120,9 @@ public abstract class SortingMachineTest {
     /*
      * Sample test cases.
      */
-
+    /**
+     * Tests testing test constructor.
+     */
     @Test
     public final void testConstructor() {
         SortingMachine<String> m = this.constructorTest(ORDER);
@@ -128,6 +130,9 @@ public abstract class SortingMachineTest {
         assertEquals(mExpected, m);
     }
 
+    /**
+     * Tests checking test add empty.
+     */
     @Test
     public final void testAddEmpty() {
         SortingMachine<String> m = this.createFromArgsTest(ORDER, true);
