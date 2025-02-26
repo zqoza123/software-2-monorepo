@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import components.queue.Queue;
+import components.queue.Queue1L;
 import components.sortingmachine.SortingMachine;
 import components.sortingmachine.SortingMachineSecondary;
 
@@ -59,7 +60,7 @@ import components.sortingmachine.SortingMachineSecondary;
  *   this = (false, $this.machineOrder, multiset_entries($this.heap[0, $this.heapSize)))
  * </pre>
  *
- * @author Put your name here
+ * @author David P. & Ford M.
  *
  */
 public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
@@ -115,8 +116,11 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         assert 0 <= j : "Violation of: 0 <= j";
         assert j < array.length : "Violation of: j < |array|";
 
-        // TODO - fill in body
-
+        // set temp value to indices i inside array. Then exchange value with i
+        // then exchange j with temp.
+        T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     /**
@@ -178,8 +182,42 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          * representation for a complete binary tree.
          */
 
-        // TODO - fill in body
-        // *** you must use the recursive algorithm discussed in class ***
+        int left = 2 * top + 1;
+        int right = 2 * top + 2;
+
+        // Check if the right child exists (which means the left child also exists)
+        if (right <= last) {
+            // Get the values at the root and child nodes
+            T root = array[top];
+            T leftChild = array[left];
+            T rightChild = array[right];
+
+            // If left child is less than or equal to right child
+            // and root is greater than left child
+            if (order.compare(leftChild, rightChild) <= 0
+                    && order.compare(root, leftChild) > 0) {
+                exchangeEntries(array, top, left);
+                siftDown(array, left, last, order);
+            }
+            // If right child is less than left child
+            // and root is greater than right child
+            else if (order.compare(rightChild, leftChild) < 0
+                    && order.compare(root, rightChild) > 0) {
+                exchangeEntries(array, top, right);
+                siftDown(array, right, last, order);
+            }
+        }
+        // If only the left child exists
+        else if (left <= last) {
+            T root = array[top];
+            T leftChild = array[left];
+
+            // If left child is less than the root
+            if (order.compare(leftChild, root) < 0) {
+                exchangeEntries(array, top, left);
+                siftDown(array, left, last, order);
+            }
+        }
 
     }
 
@@ -223,9 +261,18 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          * representation for a complete binary tree.
          */
 
-        // TODO - fill in body
-        // *** you must use the recursive algorithm discussed in class ***
+        int n = array.length;
+        // Base case: if top is a leaf node or beyond array bounds
+        if (top >= n) {
+            return;
+        }
 
+        // Recursively heapify the left and right subtrees
+        heapify(array, 2 * top + 1, order);
+        heapify(array, 2 * top + 2, order);
+
+        // After ensuring subtrees are heaps, sift down the current node
+        siftDown(array, top, n - 1, order);
     }
 
     /**
@@ -263,8 +310,12 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          */
         T[] heap = (T[]) (new Object[q.length()]);
 
-        // TODO - fill in rest of body
-
+        // Create a new array with the size of the queue
+        int i = 0;
+        while (q.length() > 0) {
+            heap[i++] = q.dequeue(); // Dequeue elements from the queue and fill the array
+        }
+        heapify(heap, 0, order); // Heapify the array
         return heap;
     }
 
@@ -383,9 +434,10 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      * </pre>
      */
     private void createNewRep(Comparator<T> order) {
-
-        // TODO - fill in body
-
+        this.machineOrder = order;
+        this.insertionMode = true;
+        this.entries = new Queue1L<T>();
+        this.heapSize = 0;
     }
 
     /*
@@ -457,8 +509,7 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         assert x != null : "Violation of: x is not null";
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
-        // TODO - fill in body
-
+        this.entries.enqueue(x); // Add the element to the queue
         assert this.conventionHolds();
     }
 
@@ -466,8 +517,10 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
     public final void changeToExtractionMode() {
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
-        // TODO - fill in body
-
+        this.heap = buildHeap(this.entries, this.machineOrder);
+        // Convert the queue to a heap
+        this.heapSize = this.heap.length; // Set the heap size
+        this.insertionMode = false; // Change the mode to extraction
         assert this.conventionHolds();
     }
 
@@ -477,11 +530,19 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
                 .isInInsertionMode() : "Violation of: not this.insertion_mode";
         assert this.size() > 0 : "Violation of: this.contents /= {}";
 
-        // TODO - fill in body
+        T root = this.heap[0]; // Get the root element
+
+        // Swap root with the last element
+        exchangeEntries(this.heap, 0, this.heapSize - 1);
+        this.heapSize--; // Reduce the heap size
+
+        // Only need to sift down if there are elements remaining in the heap
+        if (this.heapSize > 0) {
+            siftDown(this.heap, 0, this.heapSize - 1, this.machineOrder);
+        }
 
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return null;
+        return root; // Return the root element
     }
 
     @Override
@@ -498,12 +559,17 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
 
     @Override
     public final int size() {
+        int size = 0;
 
-        // TODO - fill in body
-
+        // if insertionmode, then get length of entries.
+        if (this.insertionMode) {
+            size = this.entries.length();
+        } else {
+            // else, get the heap size.
+            size = this.heapSize;
+        }
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return 0;
+        return size;
     }
 
     @Override
