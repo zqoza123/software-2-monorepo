@@ -364,8 +364,12 @@ public class List3<T> extends ListSecondary<T> {
 
     @Override
     public final void moveToFinish() {
-
-        // TODO - fill in body
+        // add the right length to the left length
+        this.leftLength += this.rightLength;
+        // reset the right length to zero
+        this.rightLength = 0;
+        // set the last left pointer to the node
+        this.lastLeft = this.postFinish.previous;
 
         assert this.conventionHolds();
     }
