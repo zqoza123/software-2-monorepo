@@ -233,7 +233,16 @@ public class List3<T> extends ListSecondary<T> {
     public final void addRightFront(T x) {
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        // Create a new node
+        Node newNode = new Node();
+        newNode.data = x;
+        // Insert the new node at the front of the right side
+        newNode.next = this.lastLeft.next;
+        newNode.previous = this.lastLeft;
+        this.lastLeft.next.previous = newNode;
+        this.lastLeft.next = newNode;
+        // Increment the right length
+        this.rightLength++;
 
         assert this.conventionHolds();
     }
@@ -241,12 +250,17 @@ public class List3<T> extends ListSecondary<T> {
     @Override
     public final T removeRightFront() {
         assert this.rightLength() > 0 : "Violation of: this.right /= <>";
-
-        // TODO - fill in body
+        // Get the node to be remove
+        Node removeNode = this.lastLeft.next;
+        T end = removeNode.data;
+        // Remove node from the list
+        this.lastLeft.next = removeNode.next;
+        removeNode.next.previous = this.lastLeft;
+        // Decrement the right length
+        this.rightLength--;
 
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return null;
+        return end;
     }
 
     @Override
