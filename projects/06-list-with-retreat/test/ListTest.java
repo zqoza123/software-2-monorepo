@@ -755,4 +755,74 @@ public abstract class ListTest {
 
     // TODO - add test cases for retreat
 
+    @Test
+    public final void testRetreatLeftNonEmptyRightEmpty() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(1, "yellow");
+        List<String> list2 = this.createFromArgsRef(0, "yellow");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
+
+    @Test
+    public final void testRetreatLeftNonEmptyRightNonEmpty() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(3, "yellow", "orange",
+                "purple", "green", "blue");
+        List<String> list2 = this.createFromArgsRef(2, "yellow", "orange",
+                "purple", "green", "blue");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
+
+    @Test
+    public final void testRetreatLeftMultipleRightNonEmpty() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(2, "yellow", "orange",
+                "green", "blue");
+        List<String> list2 = this.createFromArgsRef(1, "yellow", "orange",
+                "green", "blue");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
+
+    @Test
+    public final void testLeftRightOneEach() {
+        // Create a list with 1 element in the left part and 1 element in the right part.
+        List<String> list1 = this.createFromArgsTest(1, "alpha", "beta");
+        // Create the expected list using the reference implementation.
+        List<String> expected = this.createFromArgsRef(1, "alpha", "beta");
+
+        // Verify that the lengths are as expected.
+        assertEquals("Left length should be 1", 1, list1.leftLength());
+        assertEquals("Right length should be 1", 1, list1.rightLength());
+
+        // Assert that the overall list (as seen by iterator) matches the expected state.
+        assertEquals(expected, list1);
+    }
+
 }
