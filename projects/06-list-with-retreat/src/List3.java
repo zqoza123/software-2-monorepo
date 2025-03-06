@@ -188,9 +188,7 @@ public class List3<T> extends ListSecondary<T> {
      * No-argument constructor.
      */
     public List3() {
-
-        // TODO - fill in body
-
+        this.createNewRep();
         assert this.conventionHolds();
     }
 
