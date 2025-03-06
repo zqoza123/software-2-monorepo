@@ -280,7 +280,12 @@ public class List3<T> extends ListSecondary<T> {
     @Override
     public final void moveToStart() {
 
-        // TODO - fill in body
+        // add the left length to the right length
+        this.rightLength += this.leftLength;
+        // reset the left length to zero
+        this.leftLength = 0;
+        // Set the last left pointer to the node
+        this.lastLeft = this.preStart;
 
         assert this.conventionHolds();
     }
